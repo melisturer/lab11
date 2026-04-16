@@ -69,7 +69,7 @@ class ShoppingCart:
             return round(subtotal, 2)
 
         if self._discount["type"] == "percent":
-            discount_amount = subtotal * (self._discount["value"] // 100)
+            discount_amount = subtotal * (self._discount["value"] / 100)
             return round(max(0.0, subtotal - discount_amount), 2)
 
         else:
@@ -88,7 +88,7 @@ class ShoppingCart:
 
         This method is not implemented yet.
         """
-        raise NotImplementedError("get_item_count() is not implemented yet.")
+        return sum(item["quantity"] for item in self._items.values()
 
     def _subtotal(self) -> float:
         return sum(
